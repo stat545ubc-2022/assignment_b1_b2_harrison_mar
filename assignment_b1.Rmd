@@ -1,0 +1,94 @@
+---
+title: "assignment_b1"
+author: "Harrison"
+date: "2022-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assignment B-1
+
+This assignment covers making a function in R, documenting it, and testing it.
+
+```{r}
+library(tidyverse)
+library(testthat)
+library(gapminder)
+library(palmerpenguins)
+```
+
+# Creating Function
+
+```{r}
+#' @title group_mean function
+#' 
+#' @details Groups specified observations together and provides the mean of a chosen numeric variable
+#' 
+#' @param df dataframe being used for analysis
+#' 
+#' @param group, observational group which you would like to organize data by
+#' 
+#' @param x, numeric variable which the mean will be taken from
+#' 
+#' @return returns the mean of a numeric variable for each group of observations
+#' 
+
+group_mean <- function(df, group, x, ..., na.rm = TRUE) {
+  stopifnot(is.numeric(df %>%
+                         pull({{x}})))
+  
+  df %>%
+    group_by({{group}}) %>%
+    summarise(mean = mean({{x}}, na.rm = na.rm))
+  
+}
+```
+
+
+# Examples of Function Use
+
+Initial tests on the group_mean function using the gapminder dataset. We can expect that the output should have 2 columns, one containing the names of the observations that are grouped together, and a "mean" column containing the mean of the specified numeric variable for each obvservational group.
+
+```{r}
+# viewing dataset
+head(gapminder)
+
+# using group_mean to find the mean lifeExp for each country
+group_mean(gapminder, country, lifeExp)
+
+# using group_mean to find the mean gdpPercap of each continent
+group_mean(gapminder, continent, gdpPercap)
+
+# using group_mean to find the mean body_mass_g of penguin species where body_mass_g contains NA values
+group_mean(penguins, species, body_mass_g)
+```
+
+We can see that so far group_mean is behaving as we expect it to. Now, let's see how the function performs when given some more formal stress tests.
+
+# Testing
+
+We can use the test_that function to perform more formal stress tests on the group_mean function.
+
+```{r}
+# testing that the function can take a vector that contains NA's, will produce a warning when given a string as an input, throw an error when trying to take the mean of a non-numeric vector, and throw an error when trying to take the mean of a vector of length 0.
+
+# making a tibble to compare with group_mean output 
+island_flip_length <- penguins %>%
+  group_by(island) %>%
+  summarise(mean = mean(flipper_length_mm, na.rm = TRUE))
+
+# test_that function 
+
+test_that("Testing group_mean function", {
+  expect_equal(island_flip_length, group_mean(penguins, island, flipper_length_mm, na.rm = TRUE))
+  expect_warning(group_mean(penguins, island, "flipper_length_mm"))
+  expect_error(group_mean(penguins, species, sex))
+  expect_error(group_mean(penguins, specied, numeric(0)))
+})
+```
+
+
+
