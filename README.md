@@ -4,7 +4,9 @@ This repository contains the files for Assignment B1 in UBC's STAT 545 class whi
 
 # Repository Files
 
-assignment_b1 : .Rmd file containing the function "group_mean" along with tests to check its functionality
+- **assignment_b1** : .Rmd file containing the function "group_mean" along with tests to check its functionality
+- **.gitignore** : indicates which files git should ignore when committing and pushing
+- **.Rproj** : details the project settings and is a shortcut for opening the project directly from the filesystem
 
 # How to Run Repository Files
 
