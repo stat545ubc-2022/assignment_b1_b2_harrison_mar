@@ -1,0 +1,45 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# groupmean
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of groupmean is to quickly find the means of categorical variables of interest. By specifying dataframe, a categorical variable, and a numeric variable to the function, the categorical variable will be grouped by each unique observation and the mean of a numeric variable in question will be returned for each group.
+
+## Installation
+
+You can install the development version of groupmean like so:
+
+``` r
+devtools::install_github("stat545ubc-2022/assignment_b1_b2_harrison_mar")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem using the gapminder dataset:
+
+```{r example}
+library(groupmean)
+library(gapminder)
+
+# using group_mean to find the mean lifeExp for each country
+group_mean(gapminder, country, lifeExp)
+
+# using group_mean to find the mean gdpPercap of each continent
+group_mean(gapminder, continent, gdpPercap)
+
+```

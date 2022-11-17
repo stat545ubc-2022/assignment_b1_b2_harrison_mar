@@ -1,0 +1,22 @@
+Package: groupmean
+Title: Provides the mean of numeric variable per group in a categorical variable
+Version: 0.1.0
+Authors@R: 
+    person("Harrison", "Mar", , "harrisonmar95@gmail.com", role = c("aut", "cre"))
+Description: Given a dataframe, categorical variable and numeric variable, the
+    package groups unique observations in the categorical variable together and
+    returns the mean of a numeric variable of interest for each group.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports: 
+    dplyr,
+    gapminder,
+    magrittr,
+    palmerpenguins,
+    testthat
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+LazyData: true
