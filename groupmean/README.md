@@ -17,7 +17,7 @@ question will be returned for each group.
 You can install the development version of groupmean like so:
 
 ``` r
-devtools::install_github("groupmean")
+devtools::install_github("stat545ubc-2022/assignment_b1_b2_harrison_mar/groupmean")
 ```
 
 ## Example

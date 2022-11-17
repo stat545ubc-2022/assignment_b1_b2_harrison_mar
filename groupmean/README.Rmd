@@ -25,7 +25,7 @@ The goal of groupmean is to quickly find the means of categorical variables of i
 You can install the development version of groupmean like so:
 
 ``` r
-devtools::install_github("stat545ubc-2022/assignment_b1_b2_harrison_mar")
+devtools::install_github("stat545ubc-2022/assignment_b1_b2_harrison_mar/groupmean")
 ```
 
 ## Example
